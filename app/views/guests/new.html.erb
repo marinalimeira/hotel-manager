@@ -1,0 +1,22 @@
+<% rooms_array = Room.all.map { |room| [room.name, room.id] } %>
+
+<h1>New guest</h1>
+
+<%= form_for @room do |f| %>
+    <p>
+        <%= f.label :room_id, 'Select a room:' %> <br>
+        <%= select_tag(:room_id, options_for_select(rooms_array)) %>
+    </p>
+    
+    <p>
+        <%= f.label :name, 'Name:'%> <br>
+        <%= f.text_field :name%>
+    </p>
+    
+    <p>
+        <%= f.label :days, 'Days:'%> <br>
+        <%= f.number_field :out%>
+    </p>
+    
+    <%= f.submit%>
+<%end%>

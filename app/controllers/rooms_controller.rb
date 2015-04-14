@@ -11,10 +11,10 @@ class RoomsController < ApplicationController
         if @room.save
             redirect_to @room
         else
-            render'new'
+            render 'new'
         end
     end
-    
+        
     def show
        @room = Room.find(params[:id]) 
     end
