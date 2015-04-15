@@ -1,0 +1,18 @@
+<h1>Room details</h1>
+
+<p>
+    <strong>Name:</strong>
+    <%= @item.name %>
+</p>
+
+<p>
+    <strong>Price:</strong>
+    U$<%= @item.price %>
+</p>
+
+<p>
+    <strong>Quantity in stock:</strong>
+    <%= @item.quantity_in_stock %>
+</p>
+
+<%= link_to 'Back', items_path %>

@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'date'
+
 class GuestsController < ApplicationController
     
     Time.zone = 'America/Sao_Paulo'
@@ -12,6 +14,7 @@ class GuestsController < ApplicationController
         @guest = room.guests.create(guest_params)
         @guest.checkin = Date.today.in_time_zone
         @guest.checkout = @guest.checkin + @guest.days
+        @guest.checkout.mday = @guest.checkin.mday + @guest.days
     
         if @guest.save
             redirect_to @guest

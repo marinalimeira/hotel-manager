@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
        @room = Room.find(params[:id]) 
     end
     
-     def index
+    def index
         @rooms = Room.all
     end
     

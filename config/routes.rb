@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     
     resources :rooms
     resources :guests
+    resources :items
+    resources :invoices
 end

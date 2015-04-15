@@ -2,14 +2,14 @@
     
     <% if @room.errors.any? %>
         <div id="error_explanation">
-              <h2>
+            <h2>
                 <%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:
-              </h2>
-              <ul>
-                    <% @room.errors.full_messages.each do |msg| %>
+            </h2>
+            <ul>
+                <% @room.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
-                    <% end %>
-              </ul>
+                <% end %>
+            </ul>
         </div>
     <% end %>
     
