@@ -1,4 +1,7 @@
+# encoding: utf-8
 class GuestsController < ApplicationController
+    
+    Time.zone = 'America/Sao_Paulo'
     
     def new
         @guest = Guest.new 
@@ -7,6 +10,8 @@ class GuestsController < ApplicationController
     def create
         @room = Room.find(params[:room_id])
         @guest = room.guests.create(guest_params)
+        @guest.checkin = Date.today.in_time_zone
+        @guest.checkout = @guest.checkin + @guest.days
     
         if @guest.save
             redirect_to @guest
@@ -15,11 +20,11 @@ class GuestsController < ApplicationController
         end
     end
     
-     def show
+    def show
        @guest = Guest.find(params[:id]) 
     end
     
-     def index
+    def index
         @guests = Guest.all
     end
     
@@ -46,6 +51,6 @@ class GuestsController < ApplicationController
     
     private
         def guest_params
-            params.require(:guest).permit(:room_id, :name, :days)
+            params.(:guest).permit(:room_id, :name, :days)
         end
 end

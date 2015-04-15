@@ -1,0 +1,28 @@
+<h1>Listing guests</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Check-in</th>
+    <!--checkout or days-->
+    <th>Check-out</th>
+    <th>Room name</th>
+  </tr>
+ 
+  <% @guests.each do |guest| %>
+   <% room = Room.find(guest.room_id) %>
+    <tr>
+        <td><%= guest.name %></td>
+        <td><%= guest.checkin %></td>
+        <td><%= guest.checkout %></td>
+        <td><%= room.name %></td>
+        <td><%= link_to 'Show', guest_path(guest) %></td>
+        <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
+        <td><%= link_to 'Delete', guest_path(guest), method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br><%= link_to 'New guest', new_guest_path %>
+<br><%= link_to 'Back', welcome_index_path %>

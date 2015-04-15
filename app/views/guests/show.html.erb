@@ -1,0 +1,34 @@
+<% room = Room.find(@guest.room_id) %>
+<% days_remaining = (@guest.checkout - Date.today.in_time_zone).to_i %>
+
+<h1>Guest details</h1>
+
+<p>
+    <strong>Name:</strong>
+    <%= @guest.name %>
+</p>
+
+<p>
+    <strong>Check-in date:</strong>
+    <%= @guest.checkin %>
+</p>
+
+<!--edit css??? display: none-->
+<% if days_remaining>=0 %>
+    <p>
+        <strong>Days remaining:</strong>
+        <%= days_remaining %>
+    </p>
+<% else %>
+    <p>
+        <strong>Check-out date:</strong>
+        <%= @guest.checkout %>
+    </p>
+<% end %>
+
+<p>
+    <strong>Room name:</strong>
+    <%= room.name %>
+</p>
+
+<%= link_to 'Back', guests_path %>

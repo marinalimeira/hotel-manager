@@ -2,7 +2,7 @@
 
 <h1>New guest</h1>
 
-<%= form_for @room do |f| %>
+<%= form_for @guest do |f| %>
     <p>
         <%= f.label :room_id, 'Select a room:' %> <br>
         <%= select_tag(:room_id, options_for_select(rooms_array)) %>
@@ -15,7 +15,7 @@
     
     <p>
         <%= f.label :days, 'Days:'%> <br>
-        <%= f.number_field :out%>
+        <%= f.number_field :days%>
     </p>
     
     <%= f.submit%>
