@@ -6,19 +6,21 @@ class InvoicesController < ApplicationController
     def create
         @invoice = Invoice.new(invoice_params)
         
-        guest = Guest.find(params[:guest_id])
-        item = Item.find(params[:item_id])
-        @invoice = item.invoices.create(invoice_params)
-       # @invoice = guest.invoices.create(invoice_params)
+        @guest = Guest.find(params[:guest_id])
+        @item = Item.find(params[:item_id])
         
-        if item.quantity_in_stock >= @invoice.item_quantity
-            item.update(quantity_in_stock: item.quantity_in_stock - @invoice.item_quantity)
-            item.save
+        @invoice = @item.invoice_build(invoice_params)
+        @invoice = @guest.invoices.build(invoice_params)
+       
+               
+        if @item.quantity_in_stock >= @invoice.item_quantity
+            @item.update(quantity_in_stock: @item.quantity_in_stock - @invoice.item_quantity)
+            @item.save
         else
-            @invoice.errors.add(:quantity_in_stock, 'You dont have quantity enougth in stock!')
+            @invoice.errors.add(:quantity_in_stock, 'You dont have quantity enough in stock!')
         end
         
-        @invoice.amount = @invoice.item_quantity * item.price
+        @invoice.amount = @invoice.item_quantity * @item.price
         
         if @invoice.save
             redirect_to @invoice
@@ -44,6 +46,6 @@ class InvoicesController < ApplicationController
 
     private
     def invoice_params
-        params.require(:invoice).permit(:item_id, :item_quantity, :amount, :guest_id)
+        params.require(:invoice).permit(:item_id, :item_quantity, :guest_id)
     end
 end

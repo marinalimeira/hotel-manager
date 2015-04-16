@@ -8,7 +8,7 @@
  
       <% @invoices.each do |invoice| %>
             <tr>
-            <% item = Invoice.find(@invoice.item_id) %>
+            <% item = Item.find(@invoice.item_id) %>
             <% guest = Guest.find(@invoice.guest_id) %>
             <td><%= item.name %>:<%= invoice.item_quantity %> x <%= item.price %> = <%= amount %></td>
             <td><%=guest.name%></td>

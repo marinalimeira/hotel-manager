@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe InvoicesController, :type => :controller do
         
-    room = Room.new(number: "314A")
-    guest = Guest.new (name: "Joaquim Moraes", days: 3, checkin: Date.new(2001,2,3,4,5,6,'+03:00'), room_id: 1)
-    item = Item.new(name: "Queijo", price: 2, quantity_in_stock: 10)
+    @room = Room.new(number: '314A')
+    @guest = Guest.new(name: 'Joaquim Moraes', days: 3, checkin: Date.today.in_time_zone, room_id: 1)
+    @item = Item.new(name: "Queijo", price: 2, quantity_in_stock: 10)
          
     describe "GET #new" do
         it "responds successfully with an HTTP 200 status code" do

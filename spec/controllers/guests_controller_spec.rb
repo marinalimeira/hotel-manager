@@ -1,6 +1,3 @@
-#fazer teste com a criação de um room?
-#testar o negócio da data?
-#ver o negócio de 31+5
 require 'spec_helper'
 require 'date'
 
@@ -35,17 +32,16 @@ describe GuestsController, :type => :controller do
 		end
 			
 		it "should sum the checkin date with the qnt of days" do
-				guest = Guest.new
-				guest.checkin = Date.new(2001,2,3,4,5,6,'+03:00')
+                guest = Guest.new
+				guest.checkin = Date.today.in_time_zone
 				guest.days = 3
-				guest.checkout = guest.checkin
-				guest.checkout.mday = guest.checkin.mday + days
-		
-				expect(guest.checkout).to eq(DateTime.new(2001,2,6,4,5,6,'+03:00'))
+				guest.checkout = guest.checkin + @guest.days.days
+        
+                expect(guest.checkout).to eq(Date.today.in_time_zone + @guest.days.days)
+        end
 	end
 
 	describe "GET #show" do
-		post :create, room: { number: "204C" }
 		before(:each) { Room.create(name: "Beatriz Vieira", days: 3, room_id: 1) }
 
 		it "should assign guest" do
@@ -55,7 +51,7 @@ describe GuestsController, :type => :controller do
 	end
 
 	describe "GET #index" do
-		post :create, room: { number: "204C" }
+		room = Room.new(number: "204C")
 		before(:each) do
 			allow(Guest).to receive(:all).and_return([{name: "Beatriz Vieira", days: 3, room_id: 1}, {name: "Gabriel Soares", days: 4, room_id: 1}])
 		end
