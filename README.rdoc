@@ -1,6 +1,4 @@
 ==Hotel Manager
 
-Made with Ruby on Rails.
-
 DER:
-<img src="https://sc-cdn.scaleengine.net/i/fe7ffdc0bee7543d2cbf6c872db80a0d.jpg" alt=""></img>
+https://sc-cdn.scaleengine.net/i/fe7ffdc0bee7543d2cbf6c872db80a0d.jpg
