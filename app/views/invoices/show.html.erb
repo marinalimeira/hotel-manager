@@ -1,0 +1,31 @@
+<% guest = Guest.find(@invoice.guest_id) %>
+<% item = Item.find(@invoice.item_id) %>
+
+<h1>Invoice details</h1>
+
+<p>
+    <strong>Item:</strong>
+    <%= @item.name %>
+</p>
+
+<p>
+    <strong>Quantity:</strong>
+    <%= @invoice.item_quantity %>
+</p>
+
+<p>
+    <strong>Unit price:</strong>
+    <%= @item.price%>
+</p>
+
+<p>
+    <strong>Amount:</strong>
+    <%= @invoice.amount %>
+</p>
+
+<p>
+    <strong>Guest:</strong>
+    <%= @guest.name %>
+</p>
+
+<%= link_to 'Back', items_path %>

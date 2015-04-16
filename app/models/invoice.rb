@@ -2,6 +2,6 @@ class Invoice < ActiveRecord::Base
     has_one :item, :dependent => :destroy
     belongs_to :guests
     
-    validates :item_quantity, presence: true
-    validates :item_quantity, numericality: {greater_than: 0}    
+    validates_presence_of :item_quantity
+    validates_numericality_of :item_quantity, :greater_than_or_equal_to => 1  
 end

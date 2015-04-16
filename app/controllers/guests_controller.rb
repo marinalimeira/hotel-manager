@@ -11,10 +11,11 @@ class GuestsController < ApplicationController
     
     def create
         @room = Room.find(params[:room_id])
-        @guest = room.guests.create(guest_params)
+        @guest = @room.guests.create(guest_params)
         @guest.checkin = Date.today.in_time_zone
-        @guest.checkout = @guest.checkin + @guest.days
+        @guest.checkout = @guest.checkin
         @guest.checkout.mday = @guest.checkin.mday + @guest.days
+        @guest.amount = 0
     
         if @guest.save
             redirect_to @guest

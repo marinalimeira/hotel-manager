@@ -43,6 +43,7 @@ gem 'foreigner'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'capybara'
+  gem 'better_errors'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
 end
