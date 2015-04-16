@@ -3,6 +3,20 @@
 <h1>New guest</h1>
 
 <%= form_for @guest do |f| %>
+   
+    <% if @guest.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@guest.errors.count, "error") %> prohibited this guest from being saved:
+            </h2>
+            <ul>
+                <% @guest.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    
     <p>
         <%= f.label :room_id, 'Select a room:' %> <br>
         <%= select_tag(:room_id, options_for_select(rooms_array)) %>

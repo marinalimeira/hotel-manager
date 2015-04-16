@@ -4,7 +4,6 @@
   <tr>
     <th>Name</th>
     <th>Check-in</th>
-    <!--checkout or days-->
     <th>Check-out</th>
     <th>Room name</th>
   </tr>
@@ -13,9 +12,9 @@
    <% room = Room.find(guest.room_id) %>
     <tr>
         <td><%= guest.name %></td>
-        <td><%= guest.checkin %></td>
-        <td><%= guest.checkout %></td>
-        <td><%= room.name %></td>
+        <td><%= guest.checkin.to_date %></td>
+        <td><%= guest.checkout.to_date %></td>
+        <td><%= room.number %></td>
         <td><%= link_to 'Show', guest_path(guest) %></td>
         <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
         <td><%= link_to 'Delete', guest_path(guest), method: :delete,

@@ -10,16 +10,22 @@ class GuestsController < ApplicationController
     end
     
     def create
-        @room = Room.find(params[:room_id])
-        @guest = @room.guests.create(guest_params)
+        room = Room.find(params[:room_id])
+        @guest = room.guests.create(guest_params)
         @guest.checkin = Date.today.in_time_zone
-        @guest.checkout = @guest.checkin
-        @guest.checkout.mday = @guest.checkin.mday + @guest.days
+        @guest.checkout = @guest.checkin + @guest.days.days
         @guest.amount = 0
-    
-        if @guest.save
-            redirect_to @guest
+        
+        if room.available
+            room.available = false
+            room.save
+            if @guest.save
+                redirect_to @guest
+            else
+                render 'new'
+            end
         else
+            @guest.errors.add(:room_id, 'this room isnt available!')
             render 'new'
         end
     end
@@ -54,7 +60,7 @@ class GuestsController < ApplicationController
     end
     
     private
-        def guest_params
-            params.(:guest).permit(:room_id, :name, :days)
+        def guest_params
+            params.require(:guest).permit(:room_id, :name, :days)
         end
 end

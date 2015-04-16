@@ -6,6 +6,4 @@ class Guest < ActiveRecord::Base
     
     validates_presence_of :days
     validates_numericality_of :days, :greater_than_or_equal_to => 0
-    
-    validates_presence_of :checkin
 end
