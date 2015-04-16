@@ -1,28 +1,6 @@
-== README
+==Hotel Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Made with Ruby on Rails.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+DER:
+<img src="https://sc-cdn.scaleengine.net/i/fe7ffdc0bee7543d2cbf6c872db80a0d.jpg" alt=""></img>
