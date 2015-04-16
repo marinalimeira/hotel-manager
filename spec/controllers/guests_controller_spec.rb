@@ -18,15 +18,13 @@ describe GuestsController, :type => :controller do
 	
 	describe "POST #create" do
 		it "should assign created guest" do
-			post :create, room: { number: "204C" }
-			post :create, guest: { name: "Beatriz Vieira", days: 3, room_id: 1}
-			expect(assigns :room).to eq Room.first
-			expect(assigns :guest).to eq Guest.first
+			guest = Guest.create(name: "Beatriz Vieira", days: 3, room_id: 1)
+			expect(guest).to eq Guest.first
 		end
 
 		it "should redirect to rooms/show/:id" do
-			post :create, room: { number: "204C" }
-			post :create, guest: { name: "Beatriz Vieira", days: 3, room_id: 1}
+			room = Room.new(number: "204C")
+			guest = Guest.new(name: "Beatriz Vieira", days: 3, room_id: 1)
 			guest = Guest.first
 			expect(response).to redirect_to "/guests/#{guest.id}"
 		end
@@ -42,7 +40,7 @@ describe GuestsController, :type => :controller do
 	end
 
 	describe "GET #show" do
-		before(:each) { Room.create(name: "Beatriz Vieira", days: 3, room_id: 1) }
+		before(:each) { Guest.create(name: "Beatriz Vieira", days: 3, room_id: 1) }
 
 		it "should assign guest" do
 			get :show, id: 1

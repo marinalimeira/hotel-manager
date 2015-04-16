@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 
 gem 'foreigner'
 
+gem 'whenever'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'capybara'

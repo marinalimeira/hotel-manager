@@ -14,15 +14,15 @@ class InvoicesController < ApplicationController
         if @item.quantity_in_stock >= @invoice.item_quantity
             @item.update(quantity_in_stock: @item.quantity_in_stock - @invoice.item_quantity)
             @item.save
+            @invoice.amount = @invoice.item_quantity * @item.price
+        
+            @guest.amount += @invoice.amount
+            @guest.save
+            
+            @invoice.save
+            render 'new'            
         else
             @invoice.errors.add(:quantity_in_stock, 'You dont have quantity enough in stock!')
-        end
-        
-        @invoice.amount = @invoice.item_quantity * @item.price
-        
-        if @invoice.save
-            redirect_to @invoice
-        else
             render 'new'
         end
     end

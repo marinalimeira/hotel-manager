@@ -1,5 +1,6 @@
 <% room = Room.find(@guest.room_id) %>
 <% days_remaining = (@guest.checkout.to_date - Date.today).to_i %>
+<% invoices_array = Invoice.all.map { |invoice| [invoice.id, invoice.item_quantity, invoice.item_id, invoice.guest_id, invoice.amount] } %>
 
 <h1>Guest details</h1>
 
@@ -22,5 +23,18 @@
     <strong>Room name:</strong>
     <%= room.number %>
 </p>
+
+<strong>Guest invoices</strong> <br>
+<table>
+<% invoices_array.each do |invoice| %>
+        <tr>
+            <% item = Item.find(invoice[2]) %>
+            <td><%= item.name %>: <%= invoice[1]%> x <%= item.price %> = <%= invoice[4] %></td>           
+        </tr>
+<% end %>
+</table>
+<br>
+
+Amount: <%=@guest.amount%> <br>
 
 <%= link_to 'Back', guests_path %>

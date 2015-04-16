@@ -8,12 +8,11 @@
  
       <% @invoices.each do |invoice| %>
             <tr>
-            <% item = Item.find(@invoice.item_id) %>
-            <% guest = Guest.find(@invoice.guest_id) %>
-            <td><%= item.name %>:<%= invoice.item_quantity %> x <%= item.price %> = <%= amount %></td>
+            <% item = Item.find(invoice.item_id) %>
+            <% guest = Guest.find(invoice.guest_id) %>
+            <td><%= item.name %>: <%= invoice.item_quantity %> x <%= item.price %> = <%= invoice.amount %></td>
             <td><%=guest.name%></td>
             <td><%= link_to 'Show', invoice_path(invoice) %></td>
-            <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
             <td><%= link_to 'Delete', invoice_path(invoice), method: :delete,
         data: { confirm: 'Are you sure?' } %></td>
         </tr>

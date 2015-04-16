@@ -3,18 +3,18 @@ require 'spec_helper'
 describe Item, :type => :model do
 
     it "should not allow create an item with empty name" do
-        item = Item.new(name: "", price: 2, quantity_in_stock: 2)
+        item = Item.new(price: 2, quantity_in_stock: 2)
         expect(item.errors.messages).to eq name: ["can't be blank"]
     end
     
     it "validates the presence of its name" do
-        item = Item.new(name: "", price: 2, quantity_in_stock: 2)
+        item = Item.new(price: 2, quantity_in_stock: 2)
          
         expect(item).to be_invalid
     end
     
     it "validates the presence of its price" do
-        item = Item.new(name: "Chocolate", quantity_in_stock: 2, price: "")
+        item = Item.new(name: "Chocolate", quantity_in_stock: 2)
         expect(item.errors.messages).to eq price: ["can't be blank"]
          
         expect(item).to be_invalid
@@ -27,7 +27,7 @@ describe Item, :type => :model do
     end
         
     it "validates the presence of its quantity in stock" do
-        item = Item.new(name: "Agua", price: 2, quantity_in_stock: "")
+        item = Item.new(name: "Agua", price: 2)
         expect(item.errors.messages).to eq quantity_in_stock: ["can't be blank"]
          
         expect(item).to be_invalid

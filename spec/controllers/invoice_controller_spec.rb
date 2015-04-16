@@ -26,10 +26,10 @@ describe InvoicesController, :type => :controller do
             expect(assigns :invoice).to eq Invoice.first
         end
 
-        it "should redirect to invoices/show/:id" do
-            
+        it "should redirect to invoices/show/:id" do  
+            Invoice.create(item_id: 1, item_quantity: 2, guest_id: 1, amount: 4)
             invoice = Invoice.first
-            expect(response).to redirect_to "/invoices/#{invoice.id}"
+            expect(response).to redirect_to "/invoices/1"
         end
     end
         
